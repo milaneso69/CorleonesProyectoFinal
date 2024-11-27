@@ -1,0 +1,157 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: "sha256:30a563de922f6676f6178d45389579f3b395dbf1a8b0c2e473a5b94b5b13aa27"
+    container_name: postgresProyecto
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - "5432:5432"
+    networks:
+      - apiproyecto_default
+
+  api_usuarios:
+    build: .
+    container_name: apiUsers
+    ports:
+      - "7000:7000"
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_NAME=bdbarberiafinal
+    networks:
+      - apiproyecto_default
+    depends_on:
+      - postgres
+
+  api_servicios:
+    build: .
+    container_name: apiServicios
+    ports:
+      - "7001:7000"
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_NAME=bdbarberiafinal
+    networks:
+      - apiproyecto_default
+    depends_on:
+      - postgres
+
+  api_productos:
+    build: .
+    container_name: apiProductos
+    ports:
+      - "7002:7000"
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_NAME=bdbarberiafinal
+    networks:
+      - apiproyecto_default
+    depends_on:
+      - postgres
+
+  api_ventas:
+    build: .
+    container_name: apiSales
+    ports:
+      - "7003:7000"
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_NAME=bdbarberiafinal
+    networks:
+      - apiproyecto_default
+    depends_on:
+      - postgres
+
+  api_citas:
+    build: .
+    container_name: apiCitas
+    ports:
+      - "7004:7000"
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_NAME=bdbarberiafinal
+    networks:
+      - apiproyecto_default
+    depends_on:
+      - postgres
+
+  api_empleados:
+    build: .
+    container_name: apiEmpleados
+    ports:
+      - "7005:7000"
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_NAME=bdbarberiafinal
+    networks:
+      - apiproyecto_default
+    depends_on:
+      - postgres
+
+  api_clientes:
+    build: .
+    container_name: apiClientes
+    ports:
+      - "7006:7000"
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_NAME=bdbarberiafinal
+    networks:
+      - apiproyecto_default
+    depends_on:
+      - postgres
+
+networks:
+  apiproyecto_default:
+    external: true
